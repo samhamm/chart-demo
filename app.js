@@ -23,6 +23,46 @@ function showSongsAsList() {
   };
 };
 
+var titles = [];
+for (var i = 0; i < allSongs.length; i++) {
+  titles.push(allSongs[i].title);
+}
+
+var votes = [];
+for (var i = 0; i < allSongs.length; i++) {
+  votes.push(allSongs[i].votes);
+}
+
+var data = {
+    labels: titles,
+    datasets: [
+        {
+            data: votes,
+            backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ]
+        }]
+};
+
+var songChart = document.getElementById('song-chart').getContext('2d');
+// new Chart(songChart)...
+
+var myPieChart = new Chart(songChart,{
+    type: 'pie',
+    data: data,
+    // options: options
+});
+
+
+
+
 console.table(allSongs);
 showSongsAsList();
 // What if we wanted to use an IIFE instead?
