@@ -40,11 +40,11 @@ var data = {
     {
       data: votes,
       backgroundColor: [
-        'red',
-        'yellow',
-        'blue',
-        'green',
-        'orange'
+        'beige',
+        'azure',
+        'ivory',
+        'lavenderblush',
+        'powderblue'
       ],
       hoverBackgroundColor: [
         'purple',
@@ -60,7 +60,7 @@ var ctx = document.getElementById('song-chart').getContext('2d');
 // new Chart(songChart)...
 
 var songChart = new Chart(ctx,{
-  type: 'doughnut',
+  type: 'pie',
   data: data,
   options: {
     responsive: false
