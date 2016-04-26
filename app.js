@@ -14,55 +14,58 @@ var dmsr = new Song('DMSR', 3);
 var mountains = new Song ('Mountains', 5);
 var uGotTheLook = new Song('U Got The Look', 1);
 
-function showSongsAsList() {
+(function showSongsAsList() {
   var songList = document.getElementById('songs');
   for (var i = 0; i < allSongs.length; i++){
     var liEl = document.createElement('li');
     liEl.textContent = allSongs[i].title + ', ' + allSongs[i].votes + ' votes';
     songList.appendChild(liEl);
   };
-};
+})();
 
+// Arrays to hold data for the chart
+var votes = [];
 var titles = [];
+
+// For loop to populate those arrays
 for (var i = 0; i < allSongs.length; i++) {
   titles.push(allSongs[i].title);
-}
-
-var votes = [];
-for (var i = 0; i < allSongs.length; i++) {
   votes.push(allSongs[i].votes);
 }
 
+// Data structure from the Chart
 var data = {
-    labels: titles,
-    datasets: [
-        {
-            data: votes,
-            backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ]
-        }]
+  labels: titles,
+  datasets: [
+    {
+      data: votes,
+      backgroundColor: [
+        'red',
+        'yellow',
+        'blue',
+        'green',
+        'orange'
+      ],
+      hoverBackgroundColor: [
+        'purple',
+        'purple',
+        'purple',
+        'purple',
+        'purple'
+      ]
+    }]
 };
 
-var songChart = document.getElementById('song-chart').getContext('2d');
+var ctx = document.getElementById('song-chart').getContext('2d');
 // new Chart(songChart)...
 
-var myPieChart = new Chart(songChart,{
-    type: 'pie',
-    data: data,
+var songChart = new Chart(ctx,{
+  type: 'doughnut',
+  data: data,
+  options: {
+    responsive: false
+  }
     // options: options
 });
 
-
-
-
 console.table(allSongs);
-showSongsAsList();
-// What if we wanted to use an IIFE instead?
