@@ -1,5 +1,11 @@
 body {
   font-family: Helvetica, sans-serif;
   color: purple;
-  background-color: black
+  /*background-color: black*/
+}
+
+button {
+  background-color: purple;
+  color: white;
+  border-radius: 10px;
 }
