@@ -14,37 +14,37 @@ var dmsr = new Song('DMSR', 3);
 var mountains = new Song ('Mountains', 5);
 var uGotTheLook = new Song('U Got The Look', 1);
 
-(function showSongsAsList() {
-  var songList = document.getElementById('songs');
-  for (var i = 0; i < allSongs.length; i++){
-    var liEl = document.createElement('li');
-    liEl.textContent = allSongs[i].title + ', ' + allSongs[i].votes + ' votes';
-    songList.appendChild(liEl);
-  };
-})();
+// (function showSongsAsList() {
+//   var songList = document.getElementById('songs');
+//   for (var i = 0; i < allSongs.length; i++){
+//     var liEl = document.createElement('li');
+//     liEl.textContent = allSongs[i].title + ', ' + allSongs[i].votes + ' votes';
+//     songList.appendChild(liEl);
+//   };
+// })();
 
 // Arrays to hold data for the chart
 var votes = [];
 var titles = [];
 
-// For loop to populate those arrays
+// For loop to populate those arrays from the array of objects
 for (var i = 0; i < allSongs.length; i++) {
   titles.push(allSongs[i].title);
   votes.push(allSongs[i].votes);
 }
 
-// Data structure from the Chart
+// Data structure for the chart
 var data = {
   labels: titles,
   datasets: [
     {
       data: votes,
       backgroundColor: [
-        'beige',
-        'azure',
-        'ivory',
-        'lavenderblush',
-        'powderblue'
+        'bisque',
+        'darkgray',
+        'burlywood',
+        'lightblue',
+        'darkseagreen'
       ],
       hoverBackgroundColor: [
         'purple',
@@ -56,16 +56,21 @@ var data = {
     }]
 };
 
-var ctx = document.getElementById('song-chart').getContext('2d');
-// new Chart(songChart)...
+function drawChart() {
+  var ctx = document.getElementById('song-chart').getContext('2d');
+  // new Chart(songChart)...
 
-var songChart = new Chart(ctx,{
-  type: 'pie',
-  data: data,
-  options: {
-    responsive: false
-  }
-    // options: options
+  var songChart = new Chart(ctx,{
+    type: 'pie',
+    data: data,
+    options: {
+      responsive: false
+    }
+  });
+}
+
+document.getElementById('funky').addEventListener('click', function(){
+  drawChart();
 });
 
 console.table(allSongs);
