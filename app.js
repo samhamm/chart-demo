@@ -57,6 +57,9 @@ function tallyVote(thisSong) {
   for (var i = 0; i < allSongs.length; i++) {
     if (thisSong === allSongs[i].identifier) {
       allSongs[i].votes++;
+      localStorage.setItem('songsData', JSON.stringify(allSongs));
+      localStorage.setItem('titles', JSON.stringify(titles));
+      localStorage.setItem('votes', JSON.stringify(votes));
       updateChartArrays();
     }
   }
@@ -136,15 +139,18 @@ document.getElementById('voting').addEventListener('click', function(event){
 // HERE'S THE LOCAL STORAGE BITS THAT WE NEED
 // ++++++++++++++++++++++++++++++++++++++++++++
 
-// localStorage.setItem('songsData', JSON.stringify(allSongs));
 //
-// function checkLocal() {
-//   if (localStorage.songsData) {
-//     console.log('Local storage exists');
-//     var parsedSongsData = JSON.parse(localStorage.songsData);
-//     allSongs = parsedSongsData;
-//     updateChartArrays();
-//   } else {
-//     console.log('Local storage doesnt exist');
-//   }
-// };
+(function checkLocal() {
+  if (localStorage.songsData) {
+    console.log('Local storage exists');
+    var parsedSongsData = JSON.parse(localStorage.songsData);
+    allSongs = parsedSongsData;
+    updateChartArrays();
+  } else {
+    console.log('Local storage doesn\'t exist');
+  }
+})();
+
+document.getElementById('lazyass').addEventListener('click', function(){
+  localStorage.clear();
+});
